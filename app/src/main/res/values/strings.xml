@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CreateProjectStucture</string>
+    <string name="app_name">MVVM Pattern</string>
 
     <string name="errorString">Error Something</string>
 </resources>

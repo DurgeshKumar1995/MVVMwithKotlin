@@ -10,7 +10,7 @@ android {
     compileSdkVersion 28
     //region android
     defaultConfig {
-        applicationId "com.chetu.createprojectstucture"
+        applicationId "com.durgesh.mvvm_pattern"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
