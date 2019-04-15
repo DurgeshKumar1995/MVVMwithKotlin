@@ -1,0 +1,191 @@
+//region plugins
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+//endregion
+
+//region android
+android {
+    compileSdkVersion 28
+    //region android
+    defaultConfig {
+        applicationId "com.chetu.createprojectstucture"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    //endregion android
+
+    //region type of build
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+            //shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    //endregion  type of build
+
+    //region compileOptions
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    //endregion
+
+    //region kapt
+    kapt {
+        generateStubs = true
+    }
+    //endregion kapt
+
+//    //region sourceSets
+//    sourceSets {
+//        main.java.srcDirs += 'src/main/kotlin'
+//    }
+//    //endregion sourceSets
+//
+//    //region dexOptions
+//    dexOptions {
+//        javaMaxHeapSize "4g"
+//        preDexLibraries false
+//    }
+//    //endregion dexOptions
+//
+//    //region databinding
+//    dataBinding{
+//        enabled true
+//    }
+//    //endregion databinding
+}
+//endregion android
+
+//region initialize dependecy version
+def supportVersion = '28.0.0'
+def retrofitVersion = '2.5.0'
+def rxJavaVersion = '2.2.2'
+def lifeCycleVersion = '1.1.1'
+def butterKnifeVersion = '8.8.1'
+def daggerVersion = '2.16'
+def contraintLayout = '1.1.3'
+def circleimageview = '2.2.0'
+def picasso = '2.5.2'
+//endregion
+
+//region androidExtensions
+androidExtensions {
+    experimental = true
+}
+//endregion androidExtensions
+
+//region dependencies
+dependencies {
+
+    //region include Dependency
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //endregion include Dependency
+
+    //region kotlin-stdlib Dependency
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    //endregion kotlin-stdlib Dependency
+
+    //region JetBrains Dependency
+    implementation "org.jetbrains.anko:anko:$anko_version"
+    //endregion JetBrains Dependency
+
+    //region Test Dependency
+    /////////////////////////For Test purpose////////////////////////////////
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //endregion
+
+
+    //region support Dependency
+    /////////////////////////For Support library ////////////////////////////////
+    implementation "com.android.support:appcompat-v7:$supportVersion"
+    implementation "com.android.support:support-compat:$supportVersion"
+    implementation "com.android.support:support-v4:$supportVersion"
+    implementation "com.android.support:design:$supportVersion"
+    implementation "com.android.support:support-core-utils:$supportVersion"
+    implementation "com.android.support:support-core-ui:$supportVersion"
+    implementation "com.android.support:support-media-compat:$supportVersion"
+    implementation "com.android.support:support-fragment:$supportVersion"
+    implementation "com.android.support:support-v13:$supportVersion"
+    implementation "com.android.support:cardview-v7:$supportVersion"
+    implementation "com.android.support:gridlayout-v7:$supportVersion"
+    implementation "com.android.support:recyclerview-v7:$supportVersion"
+    implementation "com.android.support:recyclerview-selection:$supportVersion"
+    implementation "com.android.support:preference-v7:$supportVersion"
+    implementation "com.android.support:preference-v14:$supportVersion"
+    implementation "com.android.support:support-annotations:$supportVersion"
+    implementation "com.android.support:support-v4:$supportVersion"
+    implementation "com.android.support.constraint:constraint-layout:$contraintLayout"
+    //endregion
+
+    //region lifecycle Dependency
+    /////////////////////////For MVVM ViewModel////////////////////////////////
+    implementation "android.arch.lifecycle:extensions:$lifeCycleVersion"
+    kapt "android.arch.lifecycle:compiler:$lifeCycleVersion"
+    //implementation "com.squareup.moshi:moshi:1.5.0"
+    //endregion
+
+    //region retrofit2 Dependency
+    /////////////////////////For REST API////////////////////////////////
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    //implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    //endregion
+
+    //region rxjava2 Dependency
+    /////////////////////////For RxJava async////////////////////////////////
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    //endregion
+
+    //region butterknife Dependency
+    /////////////////////////For Binding View////////////////////////////////
+    implementation "com.jakewharton:butterknife:$butterKnifeVersion"
+    kapt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
+    //endregion
+
+
+    //region dagger Dependency
+//    implementation "com.google.dagger:dagger:$daggerVersion"
+    /////////////////////////For Dependency Injection////////////////////////////////
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+    //annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVersion"
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+    implementation 'javax.inject:javax.inject:1'
+    //endregion
+
+    //region Image Dendency
+    /////////////////////////For image////////////////////////////////
+    implementation "com.squareup.picasso:picasso:$picasso"
+    implementation "de.hdodenhof:circleimageview:$circleimageview"
+    //endregion
+
+    // region Room components
+    implementation "android.arch.persistence.room:runtime:$lifeCycleVersion"
+    kapt "android.arch.persistence.room:compiler:$lifeCycleVersion"
+    implementation "android.arch.persistence.room:rxjava2:$lifeCycleVersion"
+    // endregion Room components
+
+}
+//endregion dependencies
